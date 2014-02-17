@@ -65,7 +65,21 @@ enum {
      * SurfaceFlinger will only honor this flag when the layer has no blending
      *
      */
-    HWC_HINT_CLEAR_FB       = 0x00000002
+    HWC_HINT_CLEAR_FB       = 0x00000002,
+
+    /*
+     * HWC sets HWC_HINT_DRAW_TV_HINT to tell SurfaceFlinger that it should draw an
+     * hint to tell use that video is showing on external HDMI device
+     *
+     */
+    HWC_HINT_DRAW_TV_HINT       = 0x00010000,
+
+    /*
+     * HWC sets HWC_HINT_CLEAR_TV_HINT to tell SurfaceFlinger that it should clear
+     * tv hint
+     *
+     */
+    HWC_HINT_CLEAR_TV_HINT       = 0x00020000,
 };
 
 /*
@@ -80,6 +94,12 @@ enum {
      */
     HWC_SKIP_LAYER = 0x00000001,
     HWC_SCREENSHOT_ANIMATOR_LAYER = 0x00000002,
+
+    /*
+     * HWC_OVERLAY_SKIP_LAYER indicate HWC will not let the layer goto
+     * overlay. Add this as Marvell's HWC divide into Overlay and Baselay.
+     */
+    HWC_OVERLAY_SKIP_LAYER = 0x00010000,
 };
 
 /*
@@ -102,6 +122,16 @@ enum {
 
     /* this layer will be handled in the HWC, using a blit engine */
     HWC_BLIT = 4,
+
+    /* HWC_2D is not used by compositionType, only used to count HWC_2D layers
+     * that go to HWC and use GC 2D Blit, compositionType will be other values defined privately
+     * in HWC_2D.
+     */
+    HWC_2D = 5,
+
+    /* HWC_2D_TARGET is for virtual GCU blit in HWC.
+     */
+    HWC_2D_TARGET = 6,
 };
 
 /*
@@ -115,7 +145,10 @@ enum {
     HWC_BLENDING_PREMULT  = 0x0105,
 
     /* SRC_ALPHA / ONE_MINUS_SRC_ALPHA */
-    HWC_BLENDING_COVERAGE = 0x0405
+    HWC_BLENDING_COVERAGE = 0x0405,
+
+    /* Dim layer */
+    HWC_BLENDING_DIM      = 0x0805,
 };
 
 /*
@@ -186,6 +219,7 @@ enum {
      */
     HWC_DISPLAY_DPI_X                       = 4,
     HWC_DISPLAY_DPI_Y                       = 5,
+    HWC_DISPLAY_FORMAT                      = 6,
 };
 
 /* Allowed events for hwc_methods::eventControl() */
