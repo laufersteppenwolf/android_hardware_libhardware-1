@@ -147,6 +147,18 @@ enum {
     GRALLOC_MODULE_PERFORM_PRIVATE_START
 };
 
+enum {
+    /* FIXME: this only exists to work-around some issues with
+     * the video and camera frameworks. don't implement unless
+     * you know what you're doing.
+     */
+    GRALLOC_MODULE_PERFORM_CREATE_HANDLE_FROM_BUFFER = 0x080000001,
+    GRALLOC_MODULE_PERFORM_GET_BUFFER_FROM_HANDLE    = 0x080000002,
+
+    /* get physical address from handle */
+    GRALLOC_MODULE_PERFORM_GET_PHYSICAL_ADDRESS_FROM_HANDLE = 0x080000003,
+};
+
 /*****************************************************************************/
 
 /**
