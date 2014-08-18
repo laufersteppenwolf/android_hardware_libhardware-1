@@ -147,6 +147,7 @@ enum {
     GRALLOC_MODULE_PERFORM_PRIVATE_START
 };
 
+#ifdef MRVL_HARDWARE
 enum {
     /* FIXME: this only exists to work-around some issues with
      * the video and camera frameworks. don't implement unless
@@ -158,6 +159,7 @@ enum {
     /* get physical address from handle */
     GRALLOC_MODULE_PERFORM_GET_PHYSICAL_ADDRESS_FROM_HANDLE = 0x080000003,
 };
+#endif //MRVL_HARDWARE
 
 /*****************************************************************************/
 
